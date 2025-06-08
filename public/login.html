@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta de Reserva - Beauttio</title>
+  <link rel="stylesheet" href="css/registro.css">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #5ae3f180;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: rgb(147, 144, 144);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #be2d5a9e;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #be2d5a9e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Consulta tu Reserva</h2>
+    <form action="/login" method="POST">
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+
+      <select name="corte" required>
+        <option value="">Selecciona tu corte</option>
+        <option value="Fade clásico">Fade clásico</option>
+        <option value="Pompadour moderno">Pompadour moderno</option>
+        <option value="Buzz Cut">Buzz Cut</option>
+        <option value="Crew Cut">Crew Cut</option>
+        <option value="Bob recto">Bob recto</option>
+        <option value="Lob ondulado">Lob ondulado</option>
+        <option value="Corte en capas">Corte en capas</option>
+        <option value="Pixie">Pixie</option>
+      </select>
+
+      <button type="submit">Consultar</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<script>
+document.getElementById('formReserva').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const nombre = e.target.nombre.value;
+  const corte = e.target.corte.value;
+  const fecha = e.target.fecha.value;
+
+  try {
+    const respuesta = await fetch('http://localhost:3000/api/reservas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ nombre, corte, fecha }),
+    });
+
+    const resultado = await respuesta.json();
+
+    if (respuesta.ok) {
+      document.getElementById('mensajeReserva').textContent = "✅ ¡Reserva registrada con éxito!";
+      e.target.reset();
+    } else {
+      document.getElementById('mensajeReserva').textContent = `❌ Error: ${resultado.error}`;
+    }
+  } catch (error) {
+    document.getElementById('mensajeReserva').textContent = "❌ No se pudo conectar con el servidor.";
+  }
+});
+</script>

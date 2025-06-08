@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro - Beauttio</title>
+  <link rel="stylesheet" href="css/registro.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .hidden { display: none; }
+    .radio-group { text-align: left; margin: 10px 0; }
+    .radio-group label { margin-right: 15px; }
+    select, input[type="datetime-local"], input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 12px;
+      width: 100%;
+      background-color: #be2d5a9e;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #5ae3f180;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="container">
+    <h2>Reserva tu corte</h2>
+    <form action="/registro" method="POST">
+      <input type="text" name="nombre" placeholder="Nombre" required>
+
+      <div class="radio-group">
+        <label><input type="radio" name="genero" value="hombre" required> Hombre</label>
+        <label><input type="radio" name="genero" value="mujer"> Mujer</label>
+      </div>
+
+      <select name="corte" id="corte" required>
+        <option value="">Selecciona un corte</option>
+      </select>
+
+      <input type="datetime-local" name="reserva" required>
+
+      <button type="submit">Registrar</button>
+    </form>
+    <p>¿Ya tienes reserva? <a href="/login.html">Verificar</a></p>
+  </div>
+
+  <script>
+    const generoRadios = document.querySelectorAll('input[name="genero"]');
+    const corteSelect = document.getElementById('corte');
+
+    const cortes = {
+      hombre: [
+        "Fade clásico",
+        "Pompadour moderno",
+        "Buzz Cut",
+        "Crew Cut"
+      ],
+      mujer: [
+        "Bob recto",
+        "Lob ondulado",
+        "Corte en capas",
+        "Pixie"
+      ]
+    };
+
+    generoRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        corteSelect.innerHTML = '<option value="">Selecciona un corte</option>';
+        const seleccionados = cortes[radio.value] || [];
+        seleccionados.forEach(corte => {
+          const option = document.createElement('option');
+          option.value = corte;
+          option.textContent = corte;
+          corteSelect.appendChild(option);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
